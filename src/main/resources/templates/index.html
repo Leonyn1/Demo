@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>[[${title}]]</title>
+</head>
+<body>
+    <div>
+        <strong onclick="showTip()">[[${name}]] [[${name1}]]</strong>
+        <span th:text="${session.sName}"></span>
+        <span th:text="${title}"></span>
+        <span th:text="${demoTest.getName()}"></span>
+    </div>
+</body>
+<script type="text/javascript">
+
+    function showTip() {
+        alert("this is index");
+    }
+
+</script>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DemoUserDao">
+    <resultMap id="BaseResultMap" type="com.example.demo.dao.dto.DemoUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="CHAR" property="sex"/>
+        <result column="age" jdbcType="TINYINT" property="age"/>
+        <result column="height" jdbcType="TINYINT" property="height"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="join_time" jdbcType="TIMESTAMP" property="joinTime" javaType="java.util.Date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, sex, age, height, remark, join_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demo_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demo_user
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from demo_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.dao.dto.DemoUser"
+            useGeneratedKeys="true">
+        insert into demo_user (`name`, sex, age,
+                               height, remark, join_time)
+        values (#{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=TINYINT},
+                #{height,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{joinTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.dao.dto.DemoUser"
+            useGeneratedKeys="true">
+        insert into demo_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="height != null">
+                height,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="joinTime != null">
+                join_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=CHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=TINYINT},
+            </if>
+            <if test="height != null">
+                #{height,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="joinTime != null">
+                #{joinTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dao.dto.DemoUser">
+        update demo_user
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=TINYINT},
+            </if>
+            <if test="height != null">
+                height = #{height,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="joinTime != null">
+                join_time = #{joinTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.dao.dto.DemoUser">
+        update demo_user
+        set `name` = #{name,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=CHAR},
+            age = #{age,jdbcType=TINYINT},
+            height = #{height,jdbcType=TINYINT},
+            remark = #{remark,jdbcType=VARCHAR},
+            join_time = #{joinTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
