@@ -7,6 +7,7 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
+import com.example.demo.aspect.ApiLog;
 import com.example.demo.dao.dto.DemoUser;
 import com.example.demo.service.IUserService;
 import org.slf4j.Logger;
@@ -90,6 +91,7 @@ public class UserController {
 
     @GetMapping(value = "/listUser")
     @ResponseBody
+    @ApiLog
     public void listUser(){
         try {
             List<DemoUser> demoUserList = userService.listUser();

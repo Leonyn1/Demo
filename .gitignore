@@ -20,6 +20,8 @@ target/
 *.ipr
 mvnw*
 /target/
+/src/test/
+/.mvn/
 
 ### NetBeans ###
 /nbproject/private/
