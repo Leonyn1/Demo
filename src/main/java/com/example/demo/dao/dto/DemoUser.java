@@ -37,6 +37,16 @@ public class DemoUser implements Serializable {
      */
     private Date joinTime;
 
+    private double num;
+
+    public double getNum() {
+        return num;
+    }
+
+    public void setNum(double num) {
+        this.num = num;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

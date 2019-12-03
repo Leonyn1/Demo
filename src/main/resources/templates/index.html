@@ -7,17 +7,10 @@
 </head>
 <body>
     <div>
-        <strong onclick="showTip()">[[${name}]] [[${name1}]]</strong>
-        <span th:text="${session.sName}"></span>
-        <span th:text="${title}"></span>
-        <span th:text="${demoTest.getName()}"></span>
+        <strong>this is the error page</strong>
+        <br>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <strong th:text="${message}"></strong>
     </div>
 </body>
-<script type="text/javascript">
-
-    function showTip() {
-        alert("this is index");
-    }
-
-</script>
 </html>

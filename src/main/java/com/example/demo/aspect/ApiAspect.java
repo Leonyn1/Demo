@@ -12,7 +12,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 
 /**
  * @author Leon
@@ -24,7 +23,7 @@ public class ApiAspect {
     private static Logger logger = LoggerFactory.getLogger(ApiAspect.class);
 
     /** 以自定义 @WebLog 注解为切点 */
-    @Pointcut("execution(* com.example.demo..*(..))")
+    @Pointcut("execution(* com.example.demo.controller..*(..))")
     public void webLog() {}
 
     /**
@@ -37,13 +36,13 @@ public class ApiAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
-
         // 记录下请求内容
-        logger.info("URL : " + request.getRequestURL().toString());
-        logger.info("HTTP_METHOD : " + request.getMethod());
-        logger.info("IP : " + request.getRemoteAddr());
-        logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        logger.info("URL : {}", request.getRequestURL().toString());
+        logger.info("HTTP_METHOD : {}", request.getMethod());
+        logger.info("IP : {}", request.getRemoteAddr());
+        logger.info("CLASS_METHOD : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        joinPoint.getArgs();
+        logger.info("ARGS : {}", joinPoint.getArgs());
     }
 
     @AfterReturning(returning = "ret",pointcut = "webLog()")

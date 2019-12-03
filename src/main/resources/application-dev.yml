@@ -3,7 +3,6 @@ spring:
     # dataSource
     datasource:
         url: jdbc:mysql://rm-uf658u1945poss114uo.mysql.rds.aliyuncs.com:3306/study-leon-mysql?serverTimezone=Asia/Shanghai
-#        driver-class-name: com.mysql.jdbc.Driver
         username: leon
         password: nishiwodeAI521
         type: com.alibaba.druid.pool.DruidDataSource
@@ -17,7 +16,22 @@ spring:
             timeBetweenEvictionRunsMillis: 60000
             # 配置一个连接在池中最小生存的时间，单位是毫秒
             minEvictableIdleTimeMillis: 30000
-
+    mvc:
+        throw-exception-if-no-handler-found: true
+    #redis
+    redis:
+        host: 47.100.38.231
+        port: 6379
+        password: nishiwodeAI521
+        database: 0
+        timeout: 5000
+        jedis:
+            pool:
+                max-active: 50
+                max-wait: 3000
+                max-idle: 8
+                min-idle: 2
+#mybatis
 mybatis:
     mapper-locations: classpath:mapper/*.xml
     type-aliases-package: com.example.demo.dao.dto

@@ -1,14 +1,12 @@
 package com.example.demo.dao;
 
 import com.example.demo.dao.dto.DemoUser;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * @author Leon
  */
-@Mapper
 public interface DemoUserDao {
 
     /**
